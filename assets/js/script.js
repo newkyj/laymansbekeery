@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const nav = document.querySelector('.nav');
+  const nav = document.querySelector('[data-nav]') || document.querySelector('.nav');
   const navLinks = document.querySelectorAll('.nav-links a, .nav-cta, .footer-links a');
+  const navToggle = document.querySelector('[data-nav-toggle]');
+  const navLinksWrap = document.querySelector('[data-nav-links]');
   const revealItems = document.querySelectorAll('.product-card, .feature, .gallery-item, .contact-box, .cart-panel, .cart-demo, .contact-panel, .order-form, .checkout-card, .thank-you-card');
+  const pageLoader = document.querySelector('[data-page-loader]');
   const yearNode = document.querySelector('[data-current-year]');
   const searchInput = document.querySelector('[data-menu-search]');
   const filterButtons = document.querySelectorAll('[data-filter]');
@@ -39,6 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const THEME_KEY = 'laymanbekery-theme';
   let cart = [];
 
+  window.setTimeout(() => {
+    pageLoader?.classList.add('is-hidden');
+  }, 450);
+
   try {
     const savedCart = localStorage.getItem(CART_KEY);
     cart = savedCart ? JSON.parse(savedCart) : [];
@@ -67,6 +74,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const nextTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       localStorage.setItem(THEME_KEY, nextTheme);
       applyTheme(nextTheme);
+    });
+  }
+
+  if (navToggle && navLinksWrap && nav) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navLinksWrap.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
     });
   }
 
@@ -282,9 +303,11 @@ document.addEventListener('DOMContentLoaded', () => {
       renderCart();
       button.textContent = 'Added ✓';
       button.classList.add('is-added');
+      button.classList.add('micro-bump');
       setTimeout(() => {
         button.textContent = 'Add to cart';
         button.classList.remove('is-added');
+        button.classList.remove('micro-bump');
       }, 1100);
     });
   });

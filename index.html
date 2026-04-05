@@ -41,11 +41,16 @@
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
+    <div class="page-loader" data-page-loader>
+      <div class="page-loader-mark">🥐</div>
+      <p>Laymanbekery กำลังอุ่นเตาอบ...</p>
+    </div>
+
     <div class="bg-breads bg-breads-a"></div>
     <div class="bg-breads bg-breads-b"></div>
     <div class="bg-breads bg-breads-c"></div>
     <header class="hero hero-deluxe">
-      <nav class="nav">
+      <nav class="nav" data-nav>
         <a class="brand brand-logo" href="#top">
           <span class="brand-logo-mark">
             <img src="assets/images/mascot-bunny-bread.svg" alt="Laymanbekery logo" />
@@ -55,7 +60,12 @@
             <small>pink artisan bakery</small>
           </span>
         </a>
-        <div class="nav-links">
+
+        <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav-links" data-nav-links>
           <a href="#menu">Menu</a>
           <a href="pages/about.html">About</a>
           <a href="#gallery">Gallery</a>
@@ -89,7 +99,7 @@
           </div>
 
           <div class="hero-actions">
-            <a class="btn btn-primary" href="pages/menu.html">ดูเมนูแนะนำ</a>
+            <a class="btn btn-primary pulse-on-hover" href="pages/menu.html">ดูเมนูแนะนำ</a>
             <a class="btn btn-secondary" href="#gallery">ดูรูปสินค้า</a>
           </div>
 
@@ -113,7 +123,7 @@
           <div class="visual-main card-image">
             <img
               src="assets/images/hero-bread.jpg"
-              alt="ขนมปังและเบเกอรี่สดใหม่"
+              alt="ขนมปังและเบเกอรี่สดใหม่จาก Laymanbekery"
             />
             <div class="floating-badge">Best Seller • Butter Milk Bun</div>
             <div class="hero-photo-chip hero-photo-chip-top">✨ bakery aesthetic</div>
@@ -125,7 +135,7 @@
               <div class="mascot-orbit orbit-b"></div>
               <img
                 src="assets/images/mascot-bunny-bread.svg"
-                alt="มาสคอตขนมปังกระต่าย"
+                alt="มาสคอตขนมปังกระต่ายของ Laymanbekery"
               />
               <div class="logo-caption">
                 <strong>Official mascot</strong>
@@ -135,7 +145,7 @@
             <div class="mini-offer">
               <span>Fresh from oven</span>
               <strong>ขนมปังอบใหม่ทุกวัน</strong>
-              <p>พร้อมเสิร์ฟตั้งแต่เช้า เหมาะกับ breakfast และ coffee break</p>
+              <p>พร้อมเสิร์ฟตั้งแต่เช้า เหมาะกับ breakfast, coffee break และของฝากที่ดูน่ารักแบบโฮมเบเกอรี่</p>
             </div>
           </div>
         </div>
@@ -150,15 +160,12 @@
         <div class="section-heading centered">
           <p class="eyebrow">Signature bread menu</p>
           <h2>เมนูขนมปังขายดีของร้าน</h2>
-          <p>คัดเมนูยอดนิยมที่ลูกค้าชอบที่สุด ทั้งสายหวาน สายเนยนุ่ม และขนมปังสำหรับทุกวัน</p>
+          <p>คัดเมนูยอดนิยมที่ลูกค้าชอบที่สุด ทั้งสายหวาน สายเนยนุ่ม และขนมปังสำหรับทุกวันแบบหยิบง่าย กินง่าย</p>
         </div>
 
         <div class="grid cards pro-cards">
           <article class="product-card">
-            <img
-              src="assets/images/croissant.jpg"
-              alt="ครัวซองต์เนย"
-            />
+            <img src="assets/images/croissant.jpg" alt="ครัวซองต์เนย" />
             <div class="product-content">
               <span class="pill">Popular</span>
               <h3>Butter Croissant</h3>
@@ -171,10 +178,7 @@
           </article>
 
           <article class="product-card">
-            <img
-              src="assets/images/strawberry-bun.jpg"
-              alt="ขนมปังนมสตรอว์เบอร์รี"
-            />
+            <img src="assets/images/strawberry-bun.jpg" alt="ขนมปังนมสตรอว์เบอร์รี" />
             <div class="product-content">
               <span class="pill">Soft favorite</span>
               <h3>Butter Milk Bun</h3>
@@ -187,10 +191,7 @@
           </article>
 
           <article class="product-card">
-            <img
-              src="assets/images/shokupan.jpg"
-              alt="ขนมปังโฮมเมด"
-            />
+            <img src="assets/images/shokupan.jpg" alt="ขนมปังโฮมเมด" />
             <div class="product-content">
               <span class="pill">House made</span>
               <h3>Shokupan Toast</h3>
@@ -243,22 +244,13 @@
 
         <div class="gallery-grid">
           <div class="gallery-item tall">
-            <img
-              src="assets/images/bakery-shop.jpg"
-              alt="เบเกอรี่ในร้าน"
-            />
+            <img src="assets/images/bakery-shop.jpg" alt="เบเกอรี่ในร้าน Laymanbekery" />
           </div>
           <div class="gallery-item">
-            <img
-              src="assets/images/bread-table.jpg"
-              alt="ขนมปังบนโต๊ะ"
-            />
+            <img src="assets/images/bread-table.jpg" alt="ขนมปังบนโต๊ะ" />
           </div>
           <div class="gallery-item">
-            <img
-              src="assets/images/bread-coffee.jpg"
-              alt="ขนมปังและกาแฟ"
-            />
+            <img src="assets/images/bread-coffee.jpg" alt="ขนมปังและกาแฟ" />
           </div>
         </div>
       </section>
@@ -274,7 +266,7 @@
             <p>Line: @laymanbekery · Tel: 08x-xxx-xxxx · Open daily 07:00 - 18:00</p>
           </div>
           <div class="contact-actions">
-            <a class="btn btn-primary" href="pages/contact.html">Order form</a>
+            <a class="btn btn-primary pulse-on-hover" href="pages/contact.html">Order form</a>
             <a class="btn btn-secondary" href="pages/menu.html">Browse menu</a>
           </div>
         </div>
