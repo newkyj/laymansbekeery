@@ -20,36 +20,191 @@
         <p>รวมเมนูยอดนิยมที่เหมาะทั้งสำหรับมื้อเช้า กาแฟช่วงบ่าย และซื้อกลับบ้าน</p>
       </div>
 
-      <div class="grid cards pro-cards">
-        <article class="product-card">
+      <div class="menu-toolbar">
+        <input data-menu-search type="search" placeholder="ค้นหาเมนู, ส่วนผสม, หรือคำอธิบาย..." />
+        <div class="menu-filters">
+          <button class="is-active" data-filter="all" type="button">All</button>
+          <button data-filter="sweet" type="button">Sweet</button>
+          <button data-filter="savory" type="button">Savory</button>
+          <button data-filter="loaf" type="button">Loaf</button>
+        </div>
+      </div>
+
+      <div class="menu-stats">
+        <div><strong data-menu-count>10</strong><span>menu items</span></div>
+        <div><strong data-avg-carb>0g</strong><span>avg carb / 100g</span></div>
+        <div><strong>100g</strong><span>nutrition basis</span></div>
+      </div>
+
+      <div class="menu-note">
+        <p>
+          ข้อมูลคาร์บเป็น <strong>ค่าประมาณต่อ 100 กรัม</strong> เพื่อช่วยเปรียบเทียบเมนูแต่ละประเภท
+          และส่วนผสมอาจเปลี่ยนตาม batch การผลิตจริง
+        </p>
+      </div>
+
+      <div class="grid cards pro-cards" data-menu-grid>
+        <article class="menu-item product-card" data-category="sweet" data-carb="47" data-visible="true" data-search="butter croissant ครัวซองต์ เนย กรอบ หอม pastry buttery layers">
           <img src="../assets/images/croissant.jpg" alt="Butter Croissant" />
           <div class="product-content">
-            <span class="pill">Classic</span>
+            <span class="pill">Sweet</span>
             <h3>Butter Croissant</h3>
-            <p>กรอบ หอมเนย และเหมาะกับกาแฟทุกเช้า</p>
-            <div class="product-meta"><strong>฿69</strong><span>Daily baked</span></div>
+            <p>ครัวซองต์เนยแท้ layers สวย กรอบนอกนุ่มใน หอมแบบร้านอบ artisan</p>
+            <div class="detail-list">
+              <p><strong>ส่วนผสม:</strong> แป้งสาลี, เนยแท้, นมสด, ยีสต์, น้ำตาล, เกลือ</p>
+              <p><strong>คาร์บ:</strong> ประมาณ 47g ต่อ 100 กรัม</p>
+            </div>
+            <div class="product-meta"><strong>฿69</strong><span>Fresh from oven</span></div>
+            <button class="menu-more" type="button" data-open-modal data-title="Butter Croissant" data-ingredients="แป้งสาลี, เนยแท้, นมสด, ยีสต์, น้ำตาล, เกลือ" data-carb="47g ต่อ 100 กรัม" data-description="ครัวซองต์เนยแท้ layers สวย กรอบนอกนุ่มใน หอมแบบร้านอบ artisan">ดูโภชนาการ</button>
           </div>
         </article>
 
-        <article class="product-card">
-          <img src="../assets/images/strawberry-bun.jpg" alt="Strawberry Milk Bun" />
+        <article class="menu-item product-card" data-category="sweet" data-carb="52" data-visible="true" data-search="butter milk bun ขนมปังนุ่ม ครีมนมเนย sweet soft milk bun">
+          <img src="../assets/images/strawberry-bun.jpg" alt="Butter Milk Bun" />
           <div class="product-content">
             <span class="pill">Soft</span>
             <h3>Butter Milk Bun</h3>
             <p>ขนมปังนุ่มไส้ครีมนมเนย หวานกำลังดี หอมและกินง่าย</p>
+            <div class="detail-list">
+              <p><strong>ส่วนผสม:</strong> แป้งขนมปัง, นมสด, เนย, ไข่, น้ำตาล, ครีมนม</p>
+              <p><strong>คาร์บ:</strong> ประมาณ 52g ต่อ 100 กรัม</p>
+            </div>
             <div class="product-meta"><strong>฿55</strong><span>Soft favorite</span></div>
           </div>
         </article>
 
-        <article class="product-card">
+        <article class="menu-item product-card" data-category="loaf" data-carb="44" data-visible="true" data-search="shokupan toast loaf ขนมปังแผ่นญี่ปุ่น โฮมเมด soft loaf">
           <img src="../assets/images/shokupan.jpg" alt="Shokupan Toast" />
           <div class="product-content">
             <span class="pill">Loaf</span>
             <h3>Shokupan Toast</h3>
             <p>ขนมปังแผ่นญี่ปุ่นเนื้อฟู สำหรับ toast และ sandwich</p>
+            <div class="detail-list">
+              <p><strong>ส่วนผสม:</strong> แป้งขนมปัง, นมสด, เนย, ยีสต์, ไข่, น้ำตาล</p>
+              <p><strong>คาร์บ:</strong> ประมาณ 44g ต่อ 100 กรัม</p>
+            </div>
             <div class="product-meta"><strong>฿125</strong><span>Cloud-soft</span></div>
           </div>
         </article>
+
+        <article class="menu-item product-card" data-category="sweet" data-carb="41" data-visible="true" data-search="strawberry roll เค้กโรล สตรอว์เบอร์รี cream roll">
+          <img src="../assets/images/bread-table.jpg" alt="Strawberry Roll" />
+          <div class="product-content">
+            <span class="pill">Sweet</span>
+            <h3>Strawberry Roll</h3>
+            <p>โรลเค้กนุ่ม ๆ ไส้ครีมสตรอว์เบอร์รี กลิ่นหอมหวานละมุน</p>
+            <div class="detail-list">
+              <p><strong>ส่วนผสม:</strong> แป้งเค้ก, ไข่, นมสด, ครีม, สตรอว์เบอร์รี</p>
+              <p><strong>คาร์บ:</strong> ประมาณ 41g ต่อ 100 กรัม</p>
+            </div>
+            <div class="product-meta"><strong>฿75</strong><span>Berry soft</span></div>
+          </div>
+        </article>
+
+        <article class="menu-item product-card" data-category="savory" data-carb="38" data-visible="true" data-search="garlic cheese bun กระเทียม ชีส savory bun">
+          <img src="../assets/images/hero-bread.jpg" alt="Garlic Cheese Bun" />
+          <div class="product-content">
+            <span class="pill">Savory</span>
+            <h3>Garlic Cheese Bun</h3>
+            <p>ขนมปังไส้กระเทียมชีส หอมเข้มข้น กินตอนอุ่น ๆ คือที่สุด</p>
+            <div class="detail-list">
+              <p><strong>ส่วนผสม:</strong> แป้งขนมปัง, เนยกระเทียม, ชีสมอสซาเรลลา, พาร์สลีย์</p>
+              <p><strong>คาร์บ:</strong> ประมาณ 38g ต่อ 100 กรัม</p>
+            </div>
+            <div class="product-meta"><strong>฿59</strong><span>Garlic hit</span></div>
+          </div>
+        </article>
+
+        <article class="menu-item product-card" data-category="loaf" data-carb="49" data-visible="true" data-search="whole wheat loaf ขนมปังโฮลวีต healthy loaf">
+          <img src="../assets/images/bread-coffee.jpg" alt="Whole Wheat Loaf" />
+          <div class="product-content">
+            <span class="pill">Loaf</span>
+            <h3>Whole Wheat Loaf</h3>
+            <p>ขนมปังโฮลวีตเนื้อแน่นนุ่ม เหมาะสำหรับคนชอบโทนสุขภาพ</p>
+            <div class="detail-list">
+              <p><strong>ส่วนผสม:</strong> แป้งโฮลวีต, แป้งขนมปัง, นมสด, น้ำผึ้ง, ยีสต์</p>
+              <p><strong>คาร์บ:</strong> ประมาณ 49g ต่อ 100 กรัม</p>
+            </div>
+            <div class="product-meta"><strong>฿95</strong><span>Fiber rich</span></div>
+          </div>
+        </article>
+
+        <article class="menu-item product-card" data-category="sweet" data-carb="56" data-visible="true" data-search="cinnamon swirl bun อบเชย หวาน หอม cinnamon roll">
+          <img src="../assets/images/side-bread.jpg" alt="Cinnamon Swirl Bun" />
+          <div class="product-content">
+            <span class="pill">Sweet</span>
+            <h3>Cinnamon Swirl Bun</h3>
+            <p>บันอบเชยกลิ่นหอมหวาน รสละมุน กินคู่ชาหรือกาแฟคือดีมาก</p>
+            <div class="detail-list">
+              <p><strong>ส่วนผสม:</strong> แป้งสาลี, เนย, อบเชย, น้ำตาลทรายแดง, นมสด</p>
+              <p><strong>คาร์บ:</strong> ประมาณ 56g ต่อ 100 กรัม</p>
+            </div>
+            <div class="product-meta"><strong>฿65</strong><span>Warm spice</span></div>
+          </div>
+        </article>
+
+        <article class="menu-item product-card" data-category="savory" data-carb="34" data-visible="true" data-search="ham cheese bun แฮมชีส savory sandwich bun">
+          <img src="../assets/images/bakery-shop.jpg" alt="Ham Cheese Bun" />
+          <div class="product-content">
+            <span class="pill">Savory</span>
+            <h3>Ham Cheese Bun</h3>
+            <p>บันนุ่มสอดไส้แฮมและชีส อิ่มท้อง เหมาะกับมื้อเช้าแบบเร็ว ๆ</p>
+            <div class="detail-list">
+              <p><strong>ส่วนผสม:</strong> แป้งขนมปัง, แฮม, ชีส, ไข่, นมสด, เนย</p>
+              <p><strong>คาร์บ:</strong> ประมาณ 34g ต่อ 100 กรัม</p>
+            </div>
+            <div class="product-meta"><strong>฿72</strong><span>Breakfast bun</span></div>
+          </div>
+        </article>
+
+        <article class="menu-item product-card" data-category="sweet" data-carb="43" data-visible="true" data-search="custard cream bun คัสตาร์ด ครีม vanilla bun">
+          <img src="../assets/images/croissant.jpg" alt="Custard Cream Bun" />
+          <div class="product-content">
+            <span class="pill">Sweet</span>
+            <h3>Custard Cream Bun</h3>
+            <p>บันไส้คัสตาร์ดวานิลลาหอม ๆ เนื้อครีมเนียนนุ่ม กลมกล่อม</p>
+            <div class="detail-list">
+              <p><strong>ส่วนผสม:</strong> แป้งขนมปัง, คัสตาร์ด, วานิลลา, ไข่, นมสด</p>
+              <p><strong>คาร์บ:</strong> ประมาณ 43g ต่อ 100 กรัม</p>
+            </div>
+            <div class="product-meta"><strong>฿58</strong><span>Vanilla smooth</span></div>
+          </div>
+        </article>
+
+        <article class="menu-item product-card" data-category="loaf" data-carb="46" data-visible="true" data-search="banana bread เค้กกล้วยหอม banana loaf">
+          <img src="../assets/images/strawberry-bun.jpg" alt="Banana Bread" />
+          <div class="product-content">
+            <span class="pill">Loaf</span>
+            <h3>Banana Bread</h3>
+            <p>ขนมปังกล้วยหอมเนื้อชุ่มนุ่ม กลิ่นหอมธรรมชาติ กินได้ทั้งเช้าและบ่าย</p>
+            <div class="detail-list">
+              <p><strong>ส่วนผสม:</strong> กล้วยหอม, แป้งสาลี, ไข่, เนย, น้ำตาลทรายแดง</p>
+              <p><strong>คาร์บ:</strong> ประมาณ 46g ต่อ 100 กรัม</p>
+            </div>
+            <div class="product-meta"><strong>฿89</strong><span>Banana comfort</span></div>
+            <button class="menu-more" type="button" data-open-modal data-title="Banana Bread" data-ingredients="กล้วยหอม, แป้งสาลี, ไข่, เนย, น้ำตาลทรายแดง" data-carb="46g ต่อ 100 กรัม" data-description="ขนมปังกล้วยหอมเนื้อชุ่มนุ่ม กลิ่นหอมธรรมชาติ กินได้ทั้งเช้าและบ่าย">ดูโภชนาการ</button>
+          </div>
+        </article>
+      </div>
+
+      <div class="nutrition-modal" data-modal hidden>
+        <div class="nutrition-backdrop" data-close-modal></div>
+        <div class="nutrition-dialog">
+          <button class="nutrition-close" type="button" data-close-modal>×</button>
+          <p class="eyebrow">Nutrition detail</p>
+          <h3 data-modal-title>Menu item</h3>
+          <p data-modal-description></p>
+          <div class="nutrition-grid">
+            <div>
+              <strong>ส่วนผสม</strong>
+              <p data-modal-ingredients></p>
+            </div>
+            <div>
+              <strong>คาร์บ</strong>
+              <p data-modal-carb></p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="hero-actions" style="justify-content:center; margin-top: 32px;">
