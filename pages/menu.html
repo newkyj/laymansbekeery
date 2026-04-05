@@ -13,11 +13,11 @@
     <link rel="stylesheet" href="../assets/css/styles.css" />
   </head>
   <body>
-    <main class="section inner-page">
+    <main class="section inner-page menu-page-with-sticky-cart">
       <div class="section-heading centered">
         <p class="eyebrow">Full menu</p>
         <h2>เมนูขนมปังของ Laymanbekery</h2>
-        <p>รวมเมนูยอดนิยมที่เหมาะทั้งสำหรับมื้อเช้า กาแฟช่วงบ่าย และซื้อกลับบ้าน</p>
+        <p>รวมเมนูยอดนิยมสำหรับมื้อเช้า coffee break ของฝาก และออเดอร์ล่วงหน้าในสไตล์ร้านโฮมเบเกอรี่โทนชมพู</p>
       </div>
 
       <div class="menu-toolbar">
@@ -31,23 +31,23 @@
       </div>
 
       <div class="menu-stats">
-        <div><strong data-menu-count>10</strong><span>menu items</span></div>
-        <div><strong data-avg-carb>0g</strong><span>avg carb / 100g</span></div>
-        <div><strong>100g</strong><span>nutrition basis</span></div>
+        <div><strong data-menu-count>10</strong><span>เมนูที่แสดงอยู่</span></div>
+        <div><strong data-avg-carb>0g</strong><span>ค่าเฉลี่ยคาร์บ / 100g</span></div>
+        <div><strong>100g</strong><span>ฐานข้อมูลโภชนาการ</span></div>
       </div>
 
       <div class="menu-note">
         <p>
           ข้อมูลคาร์บเป็น <strong>ค่าประมาณต่อ 100 กรัม</strong> เพื่อช่วยเปรียบเทียบเมนูแต่ละประเภท
-          และส่วนผสมอาจเปลี่ยนตาม batch การผลิตจริง
+          และสูตรจริงอาจมีการปรับเล็กน้อยตาม batch การอบในแต่ละวัน
         </p>
       </div>
 
       <section class="cart-demo" aria-label="demo cart">
         <div class="cart-copy">
           <p class="eyebrow">Cart demo</p>
-          <h3>ลองกดเพิ่มสินค้า แล้วดูสรุปออเดอร์ได้เลย</h3>
-          <p>นี่คือ mockup สำหรับหน้า order flow แบบง่าย ๆ ลูกค้าจะเห็นยอดรวม จำนวนชิ้น และรายการที่เลือกทันที</p>
+          <h3>ลองกดเพิ่มสินค้า แล้วดูสรุปออเดอร์ได้ทันที</h3>
+          <p>ดีไซน์ส่วนนี้ตั้งใจให้เหมือน storefront จริง ลูกค้าจะเห็นยอดรวม จำนวนชิ้น และสามารถไปหน้ากรอกออเดอร์ต่อได้แบบลื่น ๆ</p>
         </div>
         <aside class="cart-panel" data-cart-panel>
           <div class="cart-panel-head">
@@ -55,14 +55,14 @@
             <span data-cart-count>0 items</span>
           </div>
           <div class="cart-items" data-cart-items>
-            <p class="cart-empty">ยังไม่มีสินค้าในตะกร้า ลองกด “Add to cart” ด้านล่างได้เลย</p>
+            <p class="cart-empty">ยังไม่มีสินค้าในตะกร้า ลองกด “Add to cart” จากเมนูด้านล่างได้เลย</p>
           </div>
           <div class="cart-summary">
             <div><span>Items</span><strong data-cart-items-total>0</strong></div>
             <div><span>Total</span><strong data-cart-total>฿0</strong></div>
           </div>
           <div class="cart-cta-row">
-            <button class="btn btn-primary cart-checkout" type="button" data-cart-checkout>Checkout demo</button>
+            <a class="btn btn-primary cart-checkout" href="checkout.html" data-cart-checkout>ไปหน้า checkout</a>
             <a class="btn btn-secondary cart-link" href="contact.html">ไปกรอกออเดอร์</a>
           </div>
         </aside>
@@ -77,7 +77,7 @@
               <span class="menu-badge best">Best seller</span>
             </div>
             <h3>Butter Croissant</h3>
-            <p>ครัวซองต์เนยแท้ layers สวย กรอบนอกนุ่มใน หอมแบบร้านอบ artisan</p>
+            <p>ครัวซองต์เนยแท้ layers สวย กรอบนอกนุ่มใน หอมเนยชัด เหมาะทั้งกินเดี่ยว ๆ หรือจับคู่กาแฟแก้วโปรด</p>
             <div class="detail-list">
               <p><strong>ส่วนผสม:</strong> แป้งสาลี, เนยแท้, นมสด, ยีสต์, น้ำตาล, เกลือ</p>
               <p><strong>คาร์บ:</strong> ประมาณ 47g ต่อ 100 กรัม</p>
@@ -98,7 +98,7 @@
               <span class="menu-badge promo">Hot promo</span>
             </div>
             <h3>Butter Milk Bun</h3>
-            <p>ขนมปังนุ่มไส้ครีมนมเนย หวานกำลังดี หอมและกินง่าย</p>
+            <p>ขนมปังนุ่มไส้ครีมนมเนย รสหวานกำลังดี กลิ่นหอมละมุน เป็นเมนูที่หยิบง่ายและขายดีทั้งวัน</p>
             <div class="detail-list">
               <p><strong>ส่วนผสม:</strong> แป้งขนมปัง, นมสด, เนย, ไข่, น้ำตาล, ครีมนม</p>
               <p><strong>คาร์บ:</strong> ประมาณ 52g ต่อ 100 กรัม</p>
@@ -119,7 +119,7 @@
               <span class="menu-badge signature">Signature</span>
             </div>
             <h3>Shokupan Toast</h3>
-            <p>ขนมปังแผ่นญี่ปุ่นเนื้อฟู สำหรับ toast และ sandwich</p>
+            <p>ขนมปังนมญี่ปุ่นเนื้อฟู นุ่มเด้ง เหมาะสำหรับ toast แซนด์วิช หรือซื้อกลับบ้านไว้กินได้หลายมื้อ</p>
             <div class="detail-list">
               <p><strong>ส่วนผสม:</strong> แป้งขนมปัง, นมสด, เนย, ยีสต์, ไข่, น้ำตาล</p>
               <p><strong>คาร์บ:</strong> ประมาณ 44g ต่อ 100 กรัม</p>
@@ -140,7 +140,7 @@
               <span class="menu-badge new">New</span>
             </div>
             <h3>Strawberry Roll</h3>
-            <p>โรลเค้กนุ่ม ๆ ไส้ครีมสตรอว์เบอร์รี กลิ่นหอมหวานละมุน</p>
+            <p>โรลเค้กเนื้อนุ่มกับครีมสตรอว์เบอร์รีหอมหวาน ให้ฟีลเบา ๆ สดใส เหมาะกับช่วงบ่ายหรือซื้อเป็นของฝาก</p>
             <div class="detail-list">
               <p><strong>ส่วนผสม:</strong> แป้งเค้ก, ไข่, นมสด, ครีม, สตรอว์เบอร์รี</p>
               <p><strong>คาร์บ:</strong> ประมาณ 41g ต่อ 100 กรัม</p>
@@ -160,7 +160,7 @@
               <span class="pill">Savory</span>
             </div>
             <h3>Garlic Cheese Bun</h3>
-            <p>ขนมปังไส้กระเทียมชีส หอมเข้มข้น กินตอนอุ่น ๆ คือที่สุด</p>
+            <p>ขนมปังไส้กระเทียมชีสหอมเข้มข้น รสชัด กินตอนอุ่น ๆ จะได้ทั้งความนุ่มและชีสยืดแบบเต็มคำ</p>
             <div class="detail-list">
               <p><strong>ส่วนผสม:</strong> แป้งขนมปัง, เนยกระเทียม, ชีสมอสซาเรลลา, พาร์สลีย์</p>
               <p><strong>คาร์บ:</strong> ประมาณ 38g ต่อ 100 กรัม</p>
@@ -181,7 +181,7 @@
               <span class="menu-badge healthy">Healthy pick</span>
             </div>
             <h3>Whole Wheat Loaf</h3>
-            <p>ขนมปังโฮลวีตเนื้อแน่นนุ่ม เหมาะสำหรับคนชอบโทนสุขภาพ</p>
+            <p>ขนมปังโฮลวีตเนื้อแน่นนุ่ม กลิ่นธัญพืชชัด เหมาะสำหรับคนที่อยากได้ loaf everyday use แนว balance</p>
             <div class="detail-list">
               <p><strong>ส่วนผสม:</strong> แป้งโฮลวีต, แป้งขนมปัง, นมสด, น้ำผึ้ง, ยีสต์</p>
               <p><strong>คาร์บ:</strong> ประมาณ 49g ต่อ 100 กรัม</p>
@@ -202,7 +202,7 @@
               <span class="menu-badge promo">Coffee pair</span>
             </div>
             <h3>Cinnamon Swirl Bun</h3>
-            <p>บันอบเชยกลิ่นหอมหวาน รสละมุน กินคู่ชาหรือกาแฟคือดีมาก</p>
+            <p>บันอบเชยหอมหวานแบบอบอุ่น กินคู่กาแฟหรือชาร้อนแล้วบาลานซ์มาก เป็นเมนูที่ให้ฟีล cozy ชัดเจน</p>
             <div class="detail-list">
               <p><strong>ส่วนผสม:</strong> แป้งสาลี, เนย, อบเชย, น้ำตาลทรายแดง, นมสด</p>
               <p><strong>คาร์บ:</strong> ประมาณ 56g ต่อ 100 กรัม</p>
@@ -223,7 +223,7 @@
               <span class="menu-badge best">Breakfast best</span>
             </div>
             <h3>Ham Cheese Bun</h3>
-            <p>บันนุ่มสอดไส้แฮมและชีส อิ่มท้อง เหมาะกับมื้อเช้าแบบเร็ว ๆ</p>
+            <p>บันแฮมชีสที่อิ่มท้องและกินง่าย เหมาะมากสำหรับมื้อเช้าเร่งรีบหรือซื้อพกไปกินระหว่างวัน</p>
             <div class="detail-list">
               <p><strong>ส่วนผสม:</strong> แป้งขนมปัง, แฮม, ชีส, ไข่, นมสด, เนย</p>
               <p><strong>คาร์บ:</strong> ประมาณ 34g ต่อ 100 กรัม</p>
@@ -243,7 +243,7 @@
               <span class="pill">Sweet</span>
             </div>
             <h3>Custard Cream Bun</h3>
-            <p>บันไส้คัสตาร์ดวานิลลาหอม ๆ เนื้อครีมเนียนนุ่ม กลมกล่อม</p>
+            <p>บันไส้คัสตาร์ดวานิลลาเนื้อเนียน กลมกล่อม หอมละมุน เป็นเมนูคลาสสิกที่กินง่ายและถูกใจหลายคน</p>
             <div class="detail-list">
               <p><strong>ส่วนผสม:</strong> แป้งขนมปัง, คัสตาร์ด, วานิลลา, ไข่, นมสด</p>
               <p><strong>คาร์บ:</strong> ประมาณ 43g ต่อ 100 กรัม</p>
@@ -264,7 +264,7 @@
               <span class="menu-badge signature">Homey</span>
             </div>
             <h3>Banana Bread</h3>
-            <p>ขนมปังกล้วยหอมเนื้อชุ่มนุ่ม กลิ่นหอมธรรมชาติ กินได้ทั้งเช้าและบ่าย</p>
+            <p>กล้วยหอมเบรดเนื้อชุ่มนุ่ม กลิ่นธรรมชาติชัด กินได้ทั้งเช้าและบ่าย ให้ความรู้สึกโฮมเมดแบบอบใหม่จากครัว</p>
             <div class="detail-list">
               <p><strong>ส่วนผสม:</strong> กล้วยหอม, แป้งสาลี, ไข่, เนย, น้ำตาลทรายแดง</p>
               <p><strong>คาร์บ:</strong> ประมาณ 46g ต่อ 100 กรัม</p>
@@ -297,11 +297,16 @@
           </div>
         </div>
       </div>
-
-      <div class="hero-actions" style="justify-content:center; margin-top: 32px;">
-        <a class="btn btn-primary" href="../index.html">กลับหน้าแรก</a>
-      </div>
     </main>
+
+    <div class="sticky-cart-bar" data-sticky-cart>
+      <div>
+        <strong data-sticky-cart-count>0 items</strong>
+        <span data-sticky-cart-total>฿0</span>
+      </div>
+      <a class="btn btn-primary" href="checkout.html">Checkout</a>
+    </div>
+
     <button class="btn btn-secondary theme-toggle" type="button" data-theme-toggle>🌙 Dark mode</button>
     <script src="../assets/js/script.js"></script>
   </body>

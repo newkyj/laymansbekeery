@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout Demo | Laymanbekery</title>
+    <meta name="description" content="หน้าสรุปคำสั่งซื้อเดโมของ Laymanbekery สำหรับ mockup การสั่งซื้อออนไลน์" />
+    <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body>
+    <main class="section inner-page">
+      <div class="section-heading centered">
+        <p class="eyebrow">Checkout demo</p>
+        <h2>สรุปคำสั่งซื้อก่อนยืนยัน</h2>
+        <p>นี่คือหน้าเดโมสำหรับดู flow สั่งซื้อแบบ storefront ของ Laymanbekery</p>
+      </div>
+
+      <section class="checkout-layout">
+        <div class="checkout-card">
+          <h3>รายการในตะกร้า</h3>
+          <div class="checkout-list" data-checkout-items>
+            <p class="cart-empty">ยังไม่มีสินค้าในตะกร้า</p>
+          </div>
+        </div>
+
+        <aside class="checkout-card checkout-summary-box">
+          <h3>สรุปยอด</h3>
+          <div class="checkout-summary-line"><span>จำนวนสินค้า</span><strong data-checkout-count>0 ชิ้น</strong></div>
+          <div class="checkout-summary-line"><span>ยอดรวม</span><strong data-checkout-total>฿0</strong></div>
+          <div class="checkout-summary-line"><span>สถานะ</span><strong>Demo only</strong></div>
+          <div class="checkout-actions">
+            <a class="btn btn-secondary" href="menu.html">กลับไปเลือกเมนู</a>
+            <a class="btn btn-primary" href="thank-you.html" data-place-order>ยืนยันคำสั่งซื้อเดโม</a>
+          </div>
+        </aside>
+      </section>
+    </main>
+    <button class="btn btn-secondary theme-toggle" type="button" data-theme-toggle>🌙 Dark mode</button>
+    <script src="../assets/js/script.js"></script>
+  </body>
+</html>

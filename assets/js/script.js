@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const nav = document.querySelector('.nav');
   const navLinks = document.querySelectorAll('.nav-links a, .nav-cta, .footer-links a');
-  const revealItems = document.querySelectorAll('.product-card, .feature, .gallery-item, .contact-box, .cart-panel, .cart-demo, .contact-panel, .order-form');
+  const revealItems = document.querySelectorAll('.product-card, .feature, .gallery-item, .contact-box, .cart-panel, .cart-demo, .contact-panel, .order-form, .checkout-card, .thank-you-card');
   const yearNode = document.querySelector('[data-current-year]');
   const searchInput = document.querySelector('[data-menu-search]');
   const filterButtons = document.querySelectorAll('[data-filter]');
@@ -25,6 +25,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const orderItemsInput = document.querySelector('[data-order-items]');
   const orderMessageInput = document.querySelector('[data-order-message]');
   const themeToggle = document.querySelector('[data-theme-toggle]');
+  const stickyCart = document.querySelector('[data-sticky-cart]');
+  const stickyCartCount = document.querySelector('[data-sticky-cart-count]');
+  const stickyCartTotal = document.querySelector('[data-sticky-cart-total]');
+  const checkoutItems = document.querySelector('[data-checkout-items]');
+  const checkoutCount = document.querySelector('[data-checkout-count]');
+  const checkoutTotal = document.querySelector('[data-checkout-total]');
+  const placeOrderLink = document.querySelector('[data-place-order]');
+  const thankYouCount = document.querySelector('[data-thankyou-count]');
+  const thankYouTotal = document.querySelector('[data-thankyou-total]');
 
   const CART_KEY = 'laymanbekery-cart';
   const THEME_KEY = 'laymanbekery-theme';
@@ -76,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (entry.isIntersecting) entry.target.classList.add('is-visible');
       });
     },
-    { threshold: 0.18 }
+    { threshold: 0.16 }
   );
 
   revealItems.forEach((item) => observer.observe(item));
@@ -86,6 +95,20 @@ document.addEventListener('DOMContentLoaded', () => {
       line.style.setProperty('--line-delay', `${index * 140}ms`);
     });
   }
+
+  const groupedCart = () =>
+    cart.reduce((acc, item) => {
+      const found = acc.find((entry) => entry.name === item.name);
+      if (found) {
+        found.qty += 1;
+        found.total += item.price;
+      } else {
+        acc.push({ ...item, qty: 1, total: item.price });
+      }
+      return acc;
+    }, []);
+
+  const getCartTotal = () => cart.reduce((sum, item) => sum + item.price, 0);
 
   const updateStats = () => {
     if (!menuCards.length) return;
@@ -144,18 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  const groupedCart = () =>
-    cart.reduce((acc, item) => {
-      const found = acc.find((entry) => entry.name === item.name);
-      if (found) {
-        found.qty += 1;
-        found.total += item.price;
-      } else {
-        acc.push({ ...item, qty: 1, total: item.price });
-      }
-      return acc;
-    }, []);
-
   const renderContactCart = () => {
     if (!contactCartList || !contactCartEmpty) return;
     const grouped = groupedCart();
@@ -185,17 +196,51 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (orderMessageInput) {
-      const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
       orderMessageInput.value = `รายการจาก cart demo: ${grouped
         .map((item) => `${item.name} x${item.qty}`)
-        .join(', ')} | ยอดรวมประมาณ ฿${totalPrice}`;
+        .join(', ')} | ยอดรวมประมาณ ฿${getCartTotal()} | ต้องการนัดรับหรือจัดส่งตามเวลาที่สะดวก`;
     }
+  };
+
+  const renderStickyCart = () => {
+    if (!stickyCart || !stickyCartCount || !stickyCartTotal) return;
+    stickyCart.classList.toggle('is-visible', cart.length > 0);
+    stickyCartCount.textContent = `${cart.length} item${cart.length > 1 ? 's' : ''}`;
+    stickyCartTotal.textContent = `฿${getCartTotal()}`;
+  };
+
+  const renderCheckout = () => {
+    const grouped = groupedCart();
+    if (checkoutItems) {
+      if (!grouped.length) {
+        checkoutItems.innerHTML = '<p class="cart-empty">ยังไม่มีสินค้าในตะกร้า ลองกลับไปเลือกเมนูก่อน</p>';
+      } else {
+        checkoutItems.innerHTML = grouped
+          .map(
+            (item) => `
+              <div class="checkout-item-row">
+                <div>
+                  <strong>${item.name}</strong>
+                  <span>${item.qty} ชิ้น</span>
+                </div>
+                <strong>฿${item.total}</strong>
+              </div>
+            `
+          )
+          .join('');
+      }
+    }
+
+    if (checkoutCount) checkoutCount.textContent = `${cart.length} ชิ้น`;
+    if (checkoutTotal) checkoutTotal.textContent = `฿${getCartTotal()}`;
+    if (thankYouCount) thankYouCount.textContent = `${cart.length} ชิ้น`;
+    if (thankYouTotal) thankYouTotal.textContent = `฿${getCartTotal()}`;
   };
 
   const renderCart = () => {
     if (cartItemsNode && cartCountNode && cartItemsTotalNode && cartTotalNode) {
       if (!cart.length) {
-        cartItemsNode.innerHTML = '<p class="cart-empty">ยังไม่มีสินค้าในตะกร้า ลองกด “Add to cart” ด้านล่างได้เลย</p>';
+        cartItemsNode.innerHTML = '<p class="cart-empty">ยังไม่มีสินค้าในตะกร้า ลองกด “Add to cart” จากเมนูด้านล่างได้เลย</p>';
         cartCountNode.textContent = '0 items';
         cartItemsTotalNode.textContent = '0';
         cartTotalNode.textContent = '฿0';
@@ -215,16 +260,16 @@ document.addEventListener('DOMContentLoaded', () => {
           )
           .join('');
 
-        const totalItems = cart.length;
-        const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
-        cartCountNode.textContent = `${totalItems} item${totalItems > 1 ? 's' : ''}`;
-        cartItemsTotalNode.textContent = String(totalItems);
-        cartTotalNode.textContent = `฿${totalPrice}`;
+        cartCountNode.textContent = `${cart.length} item${cart.length > 1 ? 's' : ''}`;
+        cartItemsTotalNode.textContent = String(cart.length);
+        cartTotalNode.textContent = `฿${getCartTotal()}`;
       }
     }
 
     saveCart();
     renderContactCart();
+    renderStickyCart();
+    renderCheckout();
   };
 
   cartButtons.forEach((button) => {
@@ -245,14 +290,33 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   if (cartCheckoutButton) {
-    cartCheckoutButton.addEventListener('click', () => {
+    cartCheckoutButton.addEventListener('click', (event) => {
       if (!cart.length) {
+        event.preventDefault();
         alert('ยังไม่มีสินค้าในตะกร้า ลองเลือกเมนูก่อนนะ');
+      }
+    });
+  }
+
+  if (placeOrderLink) {
+    placeOrderLink.addEventListener('click', (event) => {
+      if (!cart.length) {
+        event.preventDefault();
+        alert('ยังไม่มีสินค้าในตะกร้า จึงยังไปหน้า thank you ไม่ได้');
         return;
       }
-      const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
-      alert(`Demo checkout สำเร็จ\nจำนวน ${cart.length} ชิ้น\nยอดรวม ฿${totalPrice}\nข้อมูลถูกเตรียมไว้ให้หน้า order form แล้ว`);
+      sessionStorage.setItem('laymanbekery-last-order-count', String(cart.length));
+      sessionStorage.setItem('laymanbekery-last-order-total', String(getCartTotal()));
+      localStorage.removeItem(CART_KEY);
+      cart = [];
     });
+  }
+
+  if (thankYouCount && thankYouTotal) {
+    const lastCount = sessionStorage.getItem('laymanbekery-last-order-count');
+    const lastTotal = sessionStorage.getItem('laymanbekery-last-order-total');
+    if (lastCount) thankYouCount.textContent = `${lastCount} ชิ้น`;
+    if (lastTotal) thankYouTotal.textContent = `฿${lastTotal}`;
   }
 
   const forms = document.querySelectorAll('.order-form');
@@ -260,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       const name = form.querySelector('[name="name"]')?.value || 'ลูกค้า';
-      alert(`ขอบคุณ ${name} ที่สนใจสั่งซื้อ Laymanbekery \nเราจะติดต่อกลับโดยเร็วที่สุด`);
+      alert(`ขอบคุณ ${name} ที่ส่งรายละเอียดออเดอร์ให้ Laymanbekery \nเราจะติดต่อกลับเพื่อคอนเฟิร์มรายการและเวลารับสินค้าโดยเร็วที่สุด`);
       form.reset();
     });
   });
