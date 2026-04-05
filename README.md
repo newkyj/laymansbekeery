@@ -64,3 +64,16 @@ Use a local server and open:
 - `pages/menu.html`
 - `pages/about.html`
 - `pages/contact.html`
+
+## GitHub Pages
+
+This project can be published directly from the `main` branch using GitHub Pages.
+Expected site URL:
+
+- `https://newkyj.github.io/laymansbekeery/`
+
+## Branding
+
+- Site name: `Laymanbekery`
+- Style: pink pastel bakery
+- Deployment target: GitHub Pages
