@@ -27,9 +27,14 @@
           <p>Tel: 08x-xxx-xxxx</p>
           <p>Email: hello@laymanbekery.local</p>
           <p>Open daily 07:00 - 18:00</p>
+          <div class="contact-cart-preview" data-contact-cart-preview>
+            <strong>Cart summary</strong>
+            <p data-contact-cart-empty>ยังไม่มีรายการจากหน้าเมนู</p>
+            <div class="contact-cart-list" data-contact-cart-list></div>
+          </div>
         </div>
 
-        <form class="order-form">
+        <form class="order-form" data-order-form>
           <label>
             ชื่อ
             <input type="text" name="name" placeholder="Your name" />
@@ -40,11 +45,11 @@
           </label>
           <label>
             รายการที่ต้องการ
-            <input type="text" name="items" placeholder="เช่น Strawberry Milk Bun 6 ชิ้น" />
+            <input type="text" name="items" placeholder="เช่น Strawberry Milk Bun 6 ชิ้น" data-order-items />
           </label>
           <label>
             รายละเอียดเพิ่มเติม
-            <textarea name="message" rows="5" placeholder="ระบุวันรับสินค้า จำนวน และหมายเหตุ"></textarea>
+            <textarea name="message" rows="5" placeholder="ระบุวันรับสินค้า จำนวน และหมายเหตุ" data-order-message></textarea>
           </label>
           <button class="btn btn-primary" type="submit">ส่งคำสั่งซื้อ</button>
         </form>
@@ -54,6 +59,7 @@
         <a class="btn btn-secondary" href="../index.html">กลับหน้าแรก</a>
       </div>
     </main>
+    <button class="btn btn-secondary theme-toggle" type="button" data-theme-toggle>🌙 Dark mode</button>
     <script src="../assets/js/script.js"></script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const nav = document.querySelector('.nav');
   const navLinks = document.querySelectorAll('.nav-links a, .nav-cta, .footer-links a');
-  const revealItems = document.querySelectorAll('.product-card, .feature, .gallery-item, .contact-box, .cart-panel, .cart-demo');
+  const revealItems = document.querySelectorAll('.product-card, .feature, .gallery-item, .contact-box, .cart-panel, .cart-demo, .contact-panel, .order-form');
   const yearNode = document.querySelector('[data-current-year]');
   const searchInput = document.querySelector('[data-menu-search]');
   const filterButtons = document.querySelectorAll('[data-filter]');
@@ -20,8 +20,46 @@ document.addEventListener('DOMContentLoaded', () => {
   const cartTotalNode = document.querySelector('[data-cart-total]');
   const cartCheckoutButton = document.querySelector('[data-cart-checkout]');
   const heroAnimatedLines = document.querySelectorAll('.hero-animated-title span');
+  const contactCartList = document.querySelector('[data-contact-cart-list]');
+  const contactCartEmpty = document.querySelector('[data-contact-cart-empty]');
+  const orderItemsInput = document.querySelector('[data-order-items]');
+  const orderMessageInput = document.querySelector('[data-order-message]');
+  const themeToggle = document.querySelector('[data-theme-toggle]');
 
-  const cart = [];
+  const CART_KEY = 'laymanbekery-cart';
+  const THEME_KEY = 'laymanbekery-theme';
+  let cart = [];
+
+  try {
+    const savedCart = localStorage.getItem(CART_KEY);
+    cart = savedCart ? JSON.parse(savedCart) : [];
+  } catch {
+    cart = [];
+  }
+
+  const saveCart = () => {
+    try {
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    } catch {
+      // ignore storage errors
+    }
+  };
+
+  const applyTheme = (theme) => {
+    document.documentElement.setAttribute('data-theme', theme);
+    if (themeToggle) themeToggle.textContent = theme === 'dark' ? '☀️ Light mode' : '🌙 Dark mode';
+  };
+
+  const savedTheme = localStorage.getItem(THEME_KEY) || 'light';
+  applyTheme(savedTheme);
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const nextTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      localStorage.setItem(THEME_KEY, nextTheme);
+      applyTheme(nextTheme);
+    });
+  }
 
   if (yearNode) yearNode.textContent = new Date().getFullYear();
 
@@ -106,18 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  const renderCart = () => {
-    if (!cartItemsNode || !cartCountNode || !cartItemsTotalNode || !cartTotalNode) return;
-
-    if (!cart.length) {
-      cartItemsNode.innerHTML = '<p class="cart-empty">ยังไม่มีสินค้าในตะกร้า ลองกด “Add to cart” ด้านล่างได้เลย</p>';
-      cartCountNode.textContent = '0 items';
-      cartItemsTotalNode.textContent = '0';
-      cartTotalNode.textContent = '฿0';
-      return;
-    }
-
-    const grouped = cart.reduce((acc, item) => {
+  const groupedCart = () =>
+    cart.reduce((acc, item) => {
       const found = acc.find((entry) => entry.name === item.name);
       if (found) {
         found.qty += 1;
@@ -128,25 +156,75 @@ document.addEventListener('DOMContentLoaded', () => {
       return acc;
     }, []);
 
-    cartItemsNode.innerHTML = grouped
+  const renderContactCart = () => {
+    if (!contactCartList || !contactCartEmpty) return;
+    const grouped = groupedCart();
+
+    if (!grouped.length) {
+      contactCartEmpty.hidden = false;
+      contactCartList.innerHTML = '';
+      if (orderItemsInput) orderItemsInput.value = '';
+      if (orderMessageInput) orderMessageInput.value = '';
+      return;
+    }
+
+    contactCartEmpty.hidden = true;
+    contactCartList.innerHTML = grouped
       .map(
         (item) => `
-          <div class="cart-item-row">
-            <div>
-              <strong>${item.name}</strong>
-              <span>${item.qty} x ฿${item.price}</span>
-            </div>
-            <strong>฿${item.total}</strong>
+          <div class="contact-cart-item">
+            <strong>${item.name}</strong>
+            <span>${item.qty} ชิ้น · ฿${item.total}</span>
           </div>
         `
       )
       .join('');
 
-    const totalItems = cart.length;
-    const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
-    cartCountNode.textContent = `${totalItems} item${totalItems > 1 ? 's' : ''}`;
-    cartItemsTotalNode.textContent = String(totalItems);
-    cartTotalNode.textContent = `฿${totalPrice}`;
+    if (orderItemsInput) {
+      orderItemsInput.value = grouped.map((item) => `${item.name} ${item.qty} ชิ้น`).join(', ');
+    }
+
+    if (orderMessageInput) {
+      const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+      orderMessageInput.value = `รายการจาก cart demo: ${grouped
+        .map((item) => `${item.name} x${item.qty}`)
+        .join(', ')} | ยอดรวมประมาณ ฿${totalPrice}`;
+    }
+  };
+
+  const renderCart = () => {
+    if (cartItemsNode && cartCountNode && cartItemsTotalNode && cartTotalNode) {
+      if (!cart.length) {
+        cartItemsNode.innerHTML = '<p class="cart-empty">ยังไม่มีสินค้าในตะกร้า ลองกด “Add to cart” ด้านล่างได้เลย</p>';
+        cartCountNode.textContent = '0 items';
+        cartItemsTotalNode.textContent = '0';
+        cartTotalNode.textContent = '฿0';
+      } else {
+        const grouped = groupedCart();
+        cartItemsNode.innerHTML = grouped
+          .map(
+            (item) => `
+              <div class="cart-item-row">
+                <div>
+                  <strong>${item.name}</strong>
+                  <span>${item.qty} x ฿${item.price}</span>
+                </div>
+                <strong>฿${item.total}</strong>
+              </div>
+            `
+          )
+          .join('');
+
+        const totalItems = cart.length;
+        const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+        cartCountNode.textContent = `${totalItems} item${totalItems > 1 ? 's' : ''}`;
+        cartItemsTotalNode.textContent = String(totalItems);
+        cartTotalNode.textContent = `฿${totalPrice}`;
+      }
+    }
+
+    saveCart();
+    renderContactCart();
   };
 
   cartButtons.forEach((button) => {
@@ -173,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
       const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
-      alert(`Demo checkout สำเร็จ\nจำนวน ${cart.length} ชิ้น\nยอดรวม ฿${totalPrice}`);
+      alert(`Demo checkout สำเร็จ\nจำนวน ${cart.length} ชิ้น\nยอดรวม ฿${totalPrice}\nข้อมูลถูกเตรียมไว้ให้หน้า order form แล้ว`);
     });
   }
 
