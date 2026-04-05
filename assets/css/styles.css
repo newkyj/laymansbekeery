@@ -323,9 +323,9 @@ html[data-theme='dark'] .nutrition-grid div {
 }
 .theme-toggle {
   position: fixed;
+  top: 18px;
   right: 18px;
-  bottom: 18px;
-  z-index: 40;
+  z-index: 60;
 }
 .hero-stats { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 34px; }
 .hero-stats div { min-width: 120px; }
@@ -767,7 +767,7 @@ html[data-theme='dark'] .mini-offer {
   .brand-logo-text small { display: none; }
   .hero-photo-chip { position: static; margin-top: 12px; display: inline-flex; }
   .cart-demo { padding: 18px; }
-  .theme-toggle { right: 12px; bottom: 90px; }
+  .theme-toggle { top: 12px; right: 12px; }
 }
 
 .sticky-cart-bar {
