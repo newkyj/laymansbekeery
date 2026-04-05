@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffe8f1"/>
+      <stop offset="100%" stop-color="#ffd0e2"/>
+    </linearGradient>
+    <linearGradient id="bread" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f2c28f"/>
+      <stop offset="100%" stop-color="#c9824c"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="320" rx="48" fill="#fff7fb"/>
+  <ellipse cx="120" cy="78" rx="28" ry="66" fill="url(#body)" transform="rotate(-10 120 78)"/>
+  <ellipse cx="198" cy="78" rx="28" ry="66" fill="url(#body)" transform="rotate(10 198 78)"/>
+  <circle cx="160" cy="150" r="86" fill="url(#body)"/>
+  <ellipse cx="160" cy="214" rx="74" ry="56" fill="#fff0f6"/>
+  <ellipse cx="130" cy="146" rx="8" ry="12" fill="#4e3340"/>
+  <ellipse cx="190" cy="146" rx="8" ry="12" fill="#4e3340"/>
+  <circle cx="160" cy="166" r="8" fill="#f89cb7"/>
+  <path d="M145 184c8 10 22 16 30 0" stroke="#7d4c61" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <circle cx="106" cy="172" r="15" fill="#ffc6db"/>
+  <circle cx="214" cy="172" r="15" fill="#ffc6db"/>
+  <g transform="translate(80 190)">
+    <path d="M30 70c0-34 20-62 50-62s50 28 50 62" fill="url(#bread)"/>
+    <path d="M16 70h128c0 24-19 42-42 42H58c-23 0-42-18-42-42Z" fill="#b76f40"/>
+    <path d="M54 18c0 12-7 25-18 35" stroke="#fff6ef" stroke-width="6" stroke-linecap="round"/>
+    <path d="M81 9c2 15 1 24-4 42" stroke="#fff6ef" stroke-width="6" stroke-linecap="round"/>
+    <path d="M109 18c5 13 11 24 22 35" stroke="#fff6ef" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>
